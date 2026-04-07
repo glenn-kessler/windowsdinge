@@ -27,7 +27,9 @@ function Mount-SshfsRemote
             "-o", "ssh_command=C:/sshw/ssh.exe -F /dev/null",
             "-o", "IdentityFile=$($SshfsKey -replace '\\','/')",
             "-o", "StrictHostKeyChecking=no",
-            "-o", "ServerAliveInterval=15"
+            "-o", "ServerAliveInterval=15",
+            "-o", "uid=-1",
+            "-o", "gid=-1"
         )
 
     Start-Sleep 3
