@@ -49,12 +49,6 @@ function Unmount-SshfsRemote
     $launchctl = "C:\Program Files (x86)\WinFsp\bin\launchctl-x64.exe"
     & $launchctl stop sshfs "$SshfsDrive" 2>&1 | Out-Null
     Start-Sleep 1
-    # Fallback: Prozess direkt beenden
-    if (Test-Path "${SshfsDrive}\")
-    {
-        Get-Process sshfs -ErrorAction SilentlyContinue | Stop-Process -Force
-        Start-Sleep 1
-    }
     if (Test-Path "${SshfsDrive}\")
     {
         Write-Host "Unmount failed - $SshfsDrive still active" -ForegroundColor Red
